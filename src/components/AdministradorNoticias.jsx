@@ -55,7 +55,7 @@ const AdministradorNoticias = () => {
           </Form>
         </Card.Header>
         <Card.Body>
-          <RowCards></RowCards>
+          <RowCards noticiasFiltradas={noticiasFiltradas}></RowCards>
         </Card.Body>
       </Card>
     </>
