@@ -13,13 +13,17 @@ const AdministradorNoticias = () => {
 
   const consultarAPI = async () => {
     try {
-        const respuesta = await fetch("https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&q=ukraine");
-        const informacion = await respuesta.json();
-        console.log(respuesta);
-        setNoticias(informacion.results);
-        console.log(noticias);
-        const nFiltradas = noticias.filter((e)=>e.category[0] === categoriaSeleccionada)
-        setNoticiasFiltradas(nFiltradas);
+      const respuesta = await fetch(
+        "https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&q=ukraine"
+      );
+      const informacion = await respuesta.json();
+      console.log(respuesta);
+      setNoticias(informacion.results);
+      console.log(noticias);
+      const nFiltradas = noticias.filter(
+        (e) => e.category[0] === categoriaSeleccionada
+      );
+      setNoticiasFiltradas(nFiltradas);
     } catch (error) {
       console.log(error);
     }
