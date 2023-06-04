@@ -2,7 +2,7 @@ import { Button, Card, Col } from "react-bootstrap";
 
 const Cards = () => {
   return (
-    <Col md="4">
+    <Col md="5" lg="4">
       <Card className="shadow h-100">
         <Card.Img variant="top" src="https://images.thewest.com.au/publication/C-5558138/5d5c53294e2f00f2b4c5621539c47275e56ccd32-16x9-x0y75w800h450.jpg">
 
