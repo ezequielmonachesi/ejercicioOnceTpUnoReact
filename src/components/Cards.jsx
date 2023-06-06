@@ -1,8 +1,8 @@
 import { Button, Card, Col } from "react-bootstrap";
 
-const Cards = ({ objetoNoticia }) => {
+const Cards = ({ objetoNoticia, i }) => {
   return (
-    <Col md="5" lg="4">
+    <Col md="5" lg="4" key={i}>
       <Card className="shadow h-100">
         <Card.Img variant="top" src={objetoNoticia.image_url}></Card.Img>
         <Card.Body>
@@ -10,7 +10,7 @@ const Cards = ({ objetoNoticia }) => {
           </Card.Title>
         </Card.Body>
         <Card.Footer className="text-end">
-          <Button variant="danger">Ver noticia completa</Button>
+        <Button variant="danger" href={objetoNoticia.link} target="_blank">Ver noticia completa</Button>
         </Card.Footer>
       </Card>
     </Col>
