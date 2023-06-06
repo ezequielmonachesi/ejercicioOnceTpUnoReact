@@ -1,8 +1,8 @@
 import { Button, Card, Col } from "react-bootstrap";
 
-const Cards = ({ objetoNoticia }) => {
+const Cards = ({ objetoNoticia, i }) => {
   return (
-    <Col md="5" lg="4">
+    <Col md="5" lg="4" key={i}>
       <Card className="shadow h-100">
         <Card.Img variant="top" src={objetoNoticia.image_url}></Card.Img>
         <Card.Body>
