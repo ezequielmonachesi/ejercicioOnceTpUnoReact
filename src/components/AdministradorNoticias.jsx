@@ -36,11 +36,11 @@ const AdministradorNoticias = () => {
           <Form>
             <Form.Group
               as={Row}
-              className="mb-3 justify-content-center"
+              className="mb-3 justify-content-start"
               controlId="formPlaintextEmail"
             >
               <Form.Label column sm="2" md="4">
-                Search by category:
+                Buscar una categoría:
               </Form.Label>
               <Col sm="10" md="6" className="px-2 px-md-4">
                 <Form.Select
