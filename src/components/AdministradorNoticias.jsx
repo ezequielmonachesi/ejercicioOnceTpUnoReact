@@ -8,17 +8,19 @@ const AdministradorNoticias = () => {
   const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
 
   useEffect(() => {
-    consultarAPI();
+    if(categoriaSeleccionada){
+      consultarAPI(categoriaSeleccionada);
+    }
   }, [categoriaSeleccionada]);
 
   const consultarAPI = async (categoriaSeleccionada) => {
     try {
       const respuesta = await fetch(
-        `https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&category=${categoriaSeleccionada}&language=es`
+        `https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&category=${categoriaSeleccionada}&language=es&country=ar`
       );
       const informacion = await respuesta.json();
-      console.log(respuesta);
-      setNoticias(informacion.results);
+      setNoticias(await informacion.results);
+      console.log(informacion.results);
       // console.log(noticias);
       // const nFiltradas = noticias.filter(
       //   (e) => e.category[0] === categoriaSeleccionada
