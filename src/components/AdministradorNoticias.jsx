@@ -19,7 +19,6 @@ const AdministradorNoticias = () => {
       );
       const informacion = await respuesta.json();
       setNoticias(await informacion.results);
-      console.log(informacion.results);
     } catch (error) {
       console.log(error);
     }
