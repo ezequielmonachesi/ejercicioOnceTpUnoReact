@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 const AdministradorNoticias = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [noticias, setNoticias] = useState([]);
-  const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
 
   useEffect(() => {
     if(categoriaSeleccionada){
@@ -21,11 +20,6 @@ const AdministradorNoticias = () => {
       const informacion = await respuesta.json();
       setNoticias(await informacion.results);
       console.log(informacion.results);
-      // console.log(noticias);
-      // const nFiltradas = noticias.filter(
-      //   (e) => e.category[0] === categoriaSeleccionada
-      // );
-      // setNoticiasFiltradas(nFiltradas);
     } catch (error) {
       console.log(error);
     }
