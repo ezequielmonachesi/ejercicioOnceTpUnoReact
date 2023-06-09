@@ -1,28 +1,40 @@
 import { Card, Form, Row, Col } from "react-bootstrap";
 import RowCards from "./RowCards";
 import { useState, useEffect } from "react";
+import { PuffLoader } from "react-spinners";
 
 const AdministradorNoticias = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [noticias, setNoticias] = useState([]);
+  const [showSnipper, setShowSnipper] = useState();
 
   useEffect(() => {
-    if(categoriaSeleccionada){
+    if (categoriaSeleccionada) {
       consultarAPI(categoriaSeleccionada);
     }
   }, [categoriaSeleccionada]);
 
   const consultarAPI = async (categoriaSeleccionada) => {
     try {
+      setShowSnipper(true);
       const respuesta = await fetch(
         `https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&category=${categoriaSeleccionada}&language=es&country=ar`
       );
       const informacion = await respuesta.json();
       setNoticias(await informacion.results);
+      setShowSnipper(false);
     } catch (error) {
       console.log(error);
     }
   };
+
+  const showComponent = showSnipper ? (
+    <div className="d-flex justify-content-center">
+      <PuffLoader color="#36d7b7" />
+    </div>
+  ) : (
+    <RowCards noticiasFiltradas={noticias}></RowCards>
+  );
 
   return (
     <>
@@ -53,9 +65,7 @@ const AdministradorNoticias = () => {
             </Form.Group>
           </Form>
         </Card.Header>
-        <Card.Body>
-          <RowCards noticiasFiltradas={noticias}></RowCards>
-        </Card.Body>
+        <Card.Body>{showComponent}</Card.Body>
       </Card>
     </>
   );
