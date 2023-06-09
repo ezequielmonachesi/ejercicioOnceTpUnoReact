@@ -11,7 +11,6 @@ Es un proyecto para poder consumir una API en una app de noticias filtrado por c
 - Javascript
 - Bootstrap
 - React
-- LocalStorage
 - API
 
 ## Autor 👨🏻‍💼
