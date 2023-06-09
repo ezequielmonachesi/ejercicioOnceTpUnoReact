@@ -5,25 +5,21 @@ import { useState, useEffect } from "react";
 const AdministradorNoticias = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [noticias, setNoticias] = useState([]);
-  const [noticiasFiltradas, setNoticiasFiltradas] = useState([]);
 
   useEffect(() => {
-    consultarAPI();
+    if(categoriaSeleccionada){
+      consultarAPI(categoriaSeleccionada);
+    }
   }, [categoriaSeleccionada]);
 
-  const consultarAPI = async () => {
+  const consultarAPI = async (categoriaSeleccionada) => {
     try {
       const respuesta = await fetch(
-        "https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&country=ar"
+        `https://newsdata.io/api/1/news?apikey=pub_240135ddcbf2e44d1a628028e9bb6a82d03a4&category=${categoriaSeleccionada}&language=es&country=ar`
       );
       const informacion = await respuesta.json();
-      console.log(respuesta);
-      setNoticias(informacion.results);
-      console.log(noticias);
-      const nFiltradas = noticias.filter(
-        (e) => e.category[0] === categoriaSeleccionada
-      );
-      setNoticiasFiltradas(nFiltradas);
+      setNoticias(await informacion.results);
+      console.log(informacion.results);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +55,7 @@ const AdministradorNoticias = () => {
           </Form>
         </Card.Header>
         <Card.Body>
-          <RowCards noticiasFiltradas={noticiasFiltradas}></RowCards>
+          <RowCards noticiasFiltradas={noticias}></RowCards>
         </Card.Body>
       </Card>
     </>
